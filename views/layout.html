@@ -10,6 +10,7 @@
     <p>When all tree members have finished (or they dont respond within a certain time that is configurable), a second traversal then occurs synchronously to concatenate the output.</p>
     <p>Articles have a false 'delay' in them, that can be controlled by a URL Param (?delay=50) will delay each article to simulate a DB request for 50mS.  The timeout can also be controlled using 'max=100' (e.g. don't wait longer than 100mS for any response).  e.g. there is no listener defined for a 'list' to demonstrate how this works.</p>
     <p><a href="/">default</a> | <a href="/?delay=50&max=100">Small delay</a> | <a href="/?delay=500&max=1000">Big delay</a> | <a href="/?delay=50&max=10">Small max</a></p>
+    <p>Source: <a href="https://github.com/cliftonc/async-fe">github</a></p>
 		{+content}
 			This is the base content.
 		{/content}
