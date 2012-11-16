@@ -1,14 +1,13 @@
 
-var _ = require('underscore');
+var _ = require('underscore'),
+	renderer = require('../lib/render'),
+	data = require('../lib/data');
 
 /*
  * GET home page.
  */
 
 exports.index = function(req, res) {
-
-	var renderer = require('../lib/render'),
-		data = require('../lib/data');
 
 	// Merge route and query params
 	var params = _.extend(req.params, req.query);
@@ -19,3 +18,18 @@ exports.index = function(req, res) {
 	})
   
 };
+
+
+exports.data = function(req, res) {
+
+	var dtc = data.page.C,
+		start = data.max || 0;
+
+	for(i=(start || 0); i<(start + 50); i++) {
+		data.page['_NEW_' + i] = _.clone(dtc)
+	}
+	data.max = start + 50;
+
+	res.redirect('/');
+		
+}

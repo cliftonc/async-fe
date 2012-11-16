@@ -5,8 +5,9 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
+  , _ = require('underscore')
+  , data = require('./lib/data')
   , path = require('path');
 
 var app = express();
@@ -21,7 +22,6 @@ app.configure(function(){
   app.set('view engine', 'html');
   app.set('views', __dirname + '/views');
   app.use(express.favicon());
-  app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -32,9 +32,13 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/:channel?', routes.index);
-app.get('/users', user.list);
+console.dir(routes);
+
+app.get('/data/:number?', routes.data);
+app.get('/type/:iterator?', routes.index);
+app.get('/', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+
+  console.log("Express server listening on port " + app.get('port') + ": http://localhost:" + app.get('port') + '/');
 });
