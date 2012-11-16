@@ -1,0 +1,13 @@
+{>"layout.html"/}
+{<content}
+  {content|s}
+  <br style='clear: both'/>
+  <h2>Timing for each page element in mS</h2>
+  <table class='timing'>
+	{#timing}<tr><td>{node}</td><td>{ms} ms</td></tr>{~n}{/timing}
+  </table>
+  <h2>Original page JSON</h2>
+  <code>
+  {page|s}
+  </code>
+{/content}

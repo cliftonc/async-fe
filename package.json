@@ -1,0 +1,19 @@
+{
+  "name": "ng-async",
+  "version": "0.0.1-2",
+  "private": true,
+  "dependencies": {
+    "express": "3.0.3",
+    "jade": "*",
+    "dustjs-linkedin": "*",
+    "consolidate": "*",
+    "underscore": "*",
+    "eventemitter2": "*",
+    "async": "*"
+  },
+  "engines": "0.8.x",
+  "subdomain": "async",
+  "scripts": {
+    "start": "app.js"
+  }
+}

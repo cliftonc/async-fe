@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Concept</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Asynchronous Traversal / Rendering Concept: {count} nodes @ {title}mS</h1>
+    <p>A tree (of any depth), representing the page is traversed and events raised on each member.  Listeners (which are entirely independent) respond depending on the type of item, and if the item has children, the traversal continues down the hierarchy.  Each listener will execute its own strategy to get it's data, render itself, and place the output into a hash keyed to the path of the tree node and emit a 2nd event to indicate it is finished.</p>
+    <p>When all tree members have finished (or they dont respond within a certain time that is configurable), a second traversal then occurs synchronously to concatenate the output.</p>
+    <p>Articles have a false 'delay' in them, that can be controlled by a URL Param (?delay=50) will delay each article to simulate a DB request for 50mS.  The timeout can also be controlled using 'max=100' (e.g. don't wait longer than 100mS for any response).  e.g. there is no listener defined for a 'list' to demonstrate how this works.</p>
+    <p><a href="/">default</a> | <a href="/?delay=50&max=100">Small delay</a> | <a href="/?delay=500&max=1000">Big delay</a> | <a href="/?delay=50&max=10">Small max</a></p>
+		{+content}
+			This is the base content.
+		{/content}
+  </body>
+<!--
+{session}
+-->
+</html>

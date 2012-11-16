@@ -1,0 +1,48 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.row {
+	width: 80%;
+	padding: 5px;
+	float: left;
+	clear: both;
+}
+
+.column {	
+	float: left;
+	padding: 5px;
+}
+
+article {
+	border: solid 1px silver;
+	background-color: #AFEFAF;
+	padding: 10px;
+}
+
+.module {
+	border: solid 1px green;
+	background-color: #EFEFEF;
+	padding: 30px;
+}
+
+.C1of3 {
+  width: 30%;
+  margin: 1%;
+}
+
+.C1of2 {
+  width: 45%;
+  margin: 0.5%;
+  font-size: smaller;
+}
+
+.timing {
+	clear: both;
+	font-size: smaller;
+}
