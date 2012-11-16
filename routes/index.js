@@ -20,7 +20,9 @@ exports.index = function(req, res) {
 };
 
 
-exports.data = function(req, res) {
+exports.dataAdd = function(req, res) {
+
+	if(!data.original) data.original = _.clone(data.page);
 
 	var dtc = data.page.C,
 		start = data.max || 0;
@@ -29,6 +31,14 @@ exports.data = function(req, res) {
 		data.page['_NEW_' + i] = _.clone(dtc)
 	}
 	data.max = start + 50;
+
+	res.redirect('/');
+		
+}
+
+exports.dataReset = function(req, res) {
+
+	data.page = _.clone(data.original);
 
 	res.redirect('/');
 		

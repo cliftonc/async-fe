@@ -32,13 +32,11 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-console.dir(routes);
-
-app.get('/data/:number?', routes.data);
+app.get('/data/reset', routes.dataReset);
+app.get('/data/add', routes.dataAdd);
 app.get('/type/:iterator?', routes.index);
 app.get('/', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
-
   console.log("Express server listening on port " + app.get('port') + ": http://localhost:" + app.get('port') + '/');
 });
