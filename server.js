@@ -15,7 +15,12 @@ var rootpath = process.cwd() + '/',
     cluster = require('cluster'),
     App = require('./app.js'),
     colors = require('colors'),
+    logger = require('winston'),
     restarts = 0;
+
+// Configure logger
+logger.remove(logger.transports.Console);
+logger.add(logger.transports.Console, {level: 'info', timestamp: true, colorize: true});
 
 launchServer();
 
@@ -36,10 +41,14 @@ function launchServer() {
   // Check if we are the master process
   if (cluster.isMaster) {
 
+
+    logger.info("Launching server with " + (argv.c + "").green + " workers on port " + (port + "").green);
+
     // Fork workers based on num cpus
     for (var i = 0; i < argv.c; i++) {
       forkWorker();
     }
+
 
     // Log worker death
     // TODO : Auto restart with number of retries
@@ -50,7 +59,7 @@ function launchServer() {
       // Manage restarting of workers
       if(config.get('master:restartWorkers')) {
         if(restarts > config.get('master:maximumRestarts')) {
-          console.log('Maximum number of restarts reached, not restarting this worker.'.red);
+          logger.error('Maximum number of restarts reached, not restarting this worker.'.red);
         } else {
           restarts++;
           forkWorker();
@@ -66,10 +75,13 @@ function launchServer() {
     };
 
     // We are a child worker, so bootstrap the app.
-    App.bootstrap(options, function(app, listen) {
+    App.bootstrap(options, function(app) {
+      logger.info("Worker with pid " + (process.pid + "").grey + " online." );
       process.send({ cmd: 'workerStarted' });
     });
+
   }
+
 }
 
 /**

@@ -19,10 +19,7 @@ module.exports.bootstrap = function(options, next) {
     app.set('port', process.env.PORT || 3000);
     app.engine('html', cons.dust);
     app.set('view engine', 'html');
-    app.set('views', __dirname + '/views');
-    app.use(express.favicon());
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
+    app.set('views', __dirname + '/views');    
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
   });
